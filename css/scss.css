@@ -1,0 +1,215 @@
+@charset "UTF-8";
+@import url("https://fonts.cdnfonts.com/css/lcd");
+body {
+  pointer-events: none;
+  height: 500vh;
+  --speed: 1;
+  --cursor: grab;
+  background: url("../snapedit_1717556533250.jpeg") 50% 50%/100vw 100vh no-repeat fixed;
+  cursor: var(--cursor);
+}
+body * {
+  font-family: "LCD", sans-serif;
+  font-family: "LCD2", sans-serif;
+  font-family: "LCDMono2", sans-serif;
+  font-family: "LCDMono", sans-serif;
+  font-family: "Digitalism", sans-serif;
+  text-transform: uppercase;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body.playing #vinyl {
+  pointer-events: all;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+body.playing #needle {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+body:after {
+  font-family: "Futura", sans-serif;
+  font-size: 28px;
+  content: "Ты - лучшее, что когда-либо случалось со мной.";
+  color: #222;
+  position: fixed;
+  top: 2.5vmin;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+body:before {
+  content: "";
+  position: absolute;
+  width: 80vmin;
+  height: 80vmin;
+  border-radius: 100%;
+  top: calc(50% - 40vmin);
+  left: calc(50% - 40vmin);
+  position: fixed;
+  -webkit-transform: translateY(1vmin);
+          transform: translateY(1vmin);
+  background: -webkit-gradient(linear, left top, right top, color-stop(25%, #333), color-stop(#777), color-stop(75%, #333));
+  background: linear-gradient(to right, #333 25%, #777, #333 75%);
+  -webkit-box-shadow: 0 1.5vmin 3vmin rgba(0, 0, 0, 0.5);
+          box-shadow: 0 1.5vmin 3vmin rgba(0, 0, 0, 0.5);
+}
+
+#needle {
+  position: fixed;
+  height: 2vmin;
+  width: calc(50vw - 37.5vmin);
+  background: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.001))), -webkit-gradient(linear, left top, left bottom, from(#777), color-stop(#ccc), to(#777));
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.001)), linear-gradient(to bottom, #777, #ccc, #777);
+  top: calc(50% - 1vmin);
+  z-index: 9;
+  -webkit-transform-origin: -5vmin 50%;
+          transform-origin: -5vmin 50%;
+  -webkit-transition: 0.75s ease-in-out;
+  transition: 0.75s ease-in-out;
+  -webkit-transform: rotate(-95deg) scale(1.2);
+          transform: rotate(-95deg) scale(1.2);
+}
+#needle:before {
+  content: "";
+  position: absolute;
+  left: calc(100% - 0.5vmin);
+  top: calc(50% - 1.5vmin);
+  height: 3vmin;
+  width: 6vmin;
+  background: linear-gradient(to left, #bb232e 2px, transparent 2px), radial-gradient(circle at center, transparent 0.5vmin, #555 0.5vmin, #666), linear-gradient(45deg, #888 calc(50% - 0.1vmin), #222 calc(50% - 0.1vmin), #222 calc(50% + 0.1vmin), #888 calc(50% + 0.1vmin));
+  -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+          clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+}
+
+#vinyl {
+  z-index: 1;
+  position: fixed;
+  width: 80vmin;
+  height: 80vmin;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #ccc -0.5vmin, #777 1.5vmin, transparent 1vmin, transparent 26%, #111 27.5%, #111), url("../Mask group.png") 50% 50%/43% 43% no-repeat;
+  border-radius: 100%;
+  top: calc(50% - 40vmin);
+  left: calc(50% - 40vmin);
+  -webkit-animation: spin calc(var(--speed) * 0.3s + 3s) linear infinite 1s;
+          animation: spin calc(var(--speed) * 0.3s + 3s) linear infinite 1s;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+#vinyl:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: repeating-radial-gradient(circle at center, #222 1px, transparent 0.5px, transparent 4px, #222 4px, #222 4.5px);
+  border-radius: inherit;
+  -webkit-mask: radial-gradient(circle at center, transparent 27.5%, #000 27.5%);
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+#play,
+#stop {
+  position: fixed;
+  top: calc(100vh - 65px);
+  left: calc(50vw - 250px);
+  z-index: 2;
+  opacity: 1;
+  padding: 0.5rem 1rem 0.25rem;
+  border: none;
+  color: #30ac18;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  text-shadow: 0 0.5px 5px;
+  pointer-events: all;
+  background: transparent;
+}
+#play:hover,
+#stop:hover {
+  color: #f3ebde;
+  text-shadow: 0 1px 10px #f3ebde;
+}
+#play:active, #play:hover,
+#stop:active,
+#stop:hover {
+  -webkit-transform: translateY(2.5px);
+          transform: translateY(2.5px);
+}
+#play:active:before, #play:hover:before,
+#stop:active:before,
+#stop:hover:before {
+  -webkit-box-shadow: 0 7.5px 0 #000;
+          box-shadow: 0 7.5px 0 #000;
+}
+#play:active:after, #play:hover:after,
+#stop:active:after,
+#stop:hover:after {
+  -webkit-box-shadow: 0 7.5px 0 5px #888;
+          box-shadow: 0 7.5px 0 5px #888;
+}
+#play:before, #play:after,
+#stop:before,
+#stop:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: inherit;
+  transition: inherit;
+  border-radius: 8px;
+}
+#play:after,
+#stop:after {
+  -webkit-box-shadow: 0 10px 0 5px #888;
+          box-shadow: 0 10px 0 5px #888;
+  z-index: -2;
+}
+#play:before,
+#stop:before {
+  background: #222;
+  -webkit-box-shadow: 0 10px 0 #000;
+          box-shadow: 0 10px 0 #000;
+}
+
+#stop {
+  left: auto;
+  right: calc(50vw - 250px);
+  color: #da3743;
+}
+
+@media (max-width: 470px) {
+  #play,
+  #stop {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: calc(20vw - 20px);
+    top: calc(100vh - 75px);
+    padding: 0.5rem 0.25rem;
+    font-size: 14px;
+  }
+  #stop {
+    left: 80%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
