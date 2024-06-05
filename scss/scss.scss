@@ -204,10 +204,10 @@ body {
 @media (max-width: 470px) {
       #play,
       #stop {
-        left: 50%;
+        left: 20%;
         transform: translateX(-50%);
         width: calc(20vw - 20px);
-        top: calc(100vh - 75px);
+       top: calc(85vh - 75px);
         padding: 0.5rem 0.25rem;
         font-size: 14px;
       }
