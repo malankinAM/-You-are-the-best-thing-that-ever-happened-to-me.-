@@ -89,7 +89,7 @@ body:before {
   width: 80vmin;
   height: 80vmin;
   pointer-events: none;
-  background: radial-gradient(circle at center, #ccc -0.5vmin, #777 1.5vmin, transparent 1vmin, transparent 26%, #111 27.5%, #111), url("../Group3(2).png") 50% 50%/43% 43% no-repeat;
+  background: radial-gradient(circle at center, #ccc -0.5vmin, #777 1.5vmin, transparent 1vmin, transparent 26%, #111 27.5%, #111), url("../Group 3(2).png") 50% 50%/43% 43% no-repeat;
   border-radius: 100%;
   top: calc(50% - 40vmin);
   left: calc(50% - 40vmin);
